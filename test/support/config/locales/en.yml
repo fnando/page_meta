@@ -1,0 +1,17 @@
+en:
+  page_meta:
+    titles:
+      base: "%{value} • Dummy"
+      site:
+        home: Welcome
+      pages:
+        show: "Show Page"
+        article: "%{title}"
+
+    descriptions:
+      site:
+        home: "The best way of doing something"
+
+    keywords:
+      site:
+        home: "mysite, saas"
