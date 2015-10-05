@@ -1,5 +1,7 @@
 # PageMeta
 
+[![Build Status](https://travis-ci.org/fnando/page_meta.svg?branch=master)](https://travis-ci.org/fnando/page_meta)
+
 Easily define `<meta>` and `<link>` tags. I18n support for descriptions, keywords and titles.
 
 ## Installation
