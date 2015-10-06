@@ -157,7 +157,15 @@ page_meta.link :mask_icon, color: "#4078c0", href: asset_url("mask_icon.svg")
 To render all tags, just do something like this:
 
 ```erb
-<%= page_meta %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= page_meta %>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>
 ```
 
 ## Development
@@ -168,7 +176,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/page_meta. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/fnando/page_meta. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
