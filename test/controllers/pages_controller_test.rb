@@ -55,8 +55,8 @@ class PagesControllerTest < ActionController::TestCase
     get :show
 
     assert_select "title", "Show Page • Dummy"
-    assert_select "meta[name='DC.title'][content='Show Page • Dummy']"
-    assert_select "meta[itemprop=name][content='Show Page • Dummy']"
+    assert_select "meta[name='DC.title'][content='Show Page']"
+    assert_select "meta[itemprop=name][content='Show Page']"
   end
 
   test "render links" do
