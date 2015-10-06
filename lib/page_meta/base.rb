@@ -64,7 +64,7 @@ module PageMeta
     def compute_default_meta_tags
       tag(:language, I18n.locale)
       tag(:charset, Rails.configuration.encoding)
-      tag(:title, title.to_s) unless title.to_s.empty?
+      tag(:title, title) unless title.to_s.empty?
       tag(:keywords, keywords.to_s) unless keywords.to_s.empty?
       tag(:description, description.to_s) unless description.to_s.empty?
     end
