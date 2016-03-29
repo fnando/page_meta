@@ -40,14 +40,22 @@ page_meta:
       index: "Welcome to MyApp"
 ```
 
+The title can without the `base` context can be accessed through `page_meta.title.simple`.
+
+```erb
+<%= page_meta.title %>          // Welcome to MyApp • MyApp
+<%= page_meta.title.simple %>   // Welcome to MyApp
+```
+
 Sometimes you need to render some dynamic value. In this case, you can use the I18n placeholders.
 
 ```yaml
 en:
-  titles:
-    base: "%{title} • MyCompany"
-    workshops:
-      show: "%{name}"
+  page_meta:
+    titles:
+      base: "%{title} • MyCompany"
+      workshops:
+        show: "%{name}"
 ```
 
 You can then set dynamic values using the `PageMeta::Base#[]=`.
