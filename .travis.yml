@@ -2,5 +2,12 @@ language: ruby
 cache: bundler
 sudo: false
 rvm:
-  - 2.2.3
-before_install: gem install bundler -v 1.10.6
+- 2.3.0
+- '2.2'
+- '2.1'
+before_install: gem install bundler
+notifications:
+  email: false
+env:
+  global:
+    secure: ns+WAtacKRiznj3PV3P1EjNVY3nfDahvVuPI4CZryA5fwOdXTL5U1knFuDWopJ+MrXAJkjkK/WmVQ/v9548le9o8BwRYG4hIhasH18SKFx1uyEuRYC6RQrgNx7kU0+Xu0tN2FJBE7gh3TNElKRRP3W7zIC+dw9KTCAhepGNGWnpxabJwSb2LuZkW5hL8dMSg1o0gNLv3l1GvEyPGjrKCORvCasfOvtB5K//WGI14hnyyM4VNe+3ynLYFEkkLef6rNRK9r5jxxyG1jOD/CuxJYWooA037ZoUvkVYQQqIw9HWlncAldDdIs1nvauC6bmkoF3tV9+lE2dZuQhlw3xNsIAfsra9NZOUhZ3vLghLpEpFdyps43RRIEuaHSMtdqd8VPi8JWLbxrm3NjVCer4/sURS8+Yg/lWAfZ8vZf+Aic7TwvLGC9I70tCnebGk2B28UAdbQF2e3qmiDg7sjedFIM9FLWkXdFDn/VCD3svUzYdfK7Ur2fgPgsJdtedIJQA5Eqd4L3OxcxNBNkjrThNSbohJFrXqCtAVBsEfsS5rYmZHwjnt4isbgAq9/qTTlgFkZ/2eUg3oMV58QNIhUWWCYbutLftCpp+umfbr4AudB+tmjRw2e6vOuWendo6pWZTBHL1nAv+MxaS7XDTgDr9yuTsdEETIUf+9oiAw0qr81SPY=
