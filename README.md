@@ -1,6 +1,10 @@
 # PageMeta
 
-[![Build Status](https://travis-ci.org/fnando/page_meta.svg?branch=master)](https://travis-ci.org/fnando/page_meta)
+[![Travis-CI](https://travis-ci.org/fnando/page_meta.png)](https://travis-ci.org/fnando/page_meta)
+[![Code Climate](https://codeclimate.com/github/fnando/page_meta/badges/gpa.svg)](https://codeclimate.com/github/fnando/page_meta)
+[![Test Coverage](https://codeclimate.com/github/fnando/page_meta/badges/coverage.svg)](https://codeclimate.com/github/fnando/page_meta/coverage)
+[![Gem](https://img.shields.io/gem/v/page_meta.svg)](https://rubygems.org/gems/page_meta)
+[![Gem](https://img.shields.io/gem/dt/page_meta.svg)](https://rubygems.org/gems/page_meta)
 
 Easily define `<meta>` and `<link>` tags. I18n support for descriptions, keywords and titles.
 
