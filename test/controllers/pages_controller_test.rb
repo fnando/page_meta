@@ -8,7 +8,7 @@ class PagesControllerTest < ActionController::TestCase
 
   test "render encoding tag" do
     get :show
-    assert_select "meta[charset=utf-8]"
+    assert_select "meta[charset=UTF-8]"
   end
 
   test "render language tag" do
