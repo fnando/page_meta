@@ -4,7 +4,7 @@ module PageMeta
       def render
         return if content.blank?
 
-        helpers.tag(:meta, charset: content)
+        helpers.tag(:meta, charset: content.to_s.upcase)
       end
     end
   end
