@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PageMeta
   class MetaTag
     class Charset < MetaTag

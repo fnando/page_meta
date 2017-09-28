@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ENV["RAILS_ENV"] = "test"
 
 require "rails"
@@ -27,11 +29,11 @@ class ApplicationController < ActionController::Base
 end
 
 class SiteController < ApplicationController
-  def home
-  end
+  def home; end
 end
 
 class PagesController < ApplicationController
+  # rubocop:disable Metrics/AbcSize
   def show
     page_meta.tag :author, "John Doe"
     page_meta.tag :robots, "index, follow"
@@ -41,26 +43,24 @@ class PagesController < ApplicationController
     page_meta.tag :dns_prefetch_control, "http://example.com"
     page_meta.tag :keywords, "KEYWORDS"
 
-    page_meta.tag :og, {
-      image: "IMAGE",
-      image_type: "image/jpeg",
-      image_width: 800,
-      image_height: 600,
-      description: 'DESCRIPTION',
-      title: 'TITLE',
-      type: "article",
-      article_author: "John Doe",
-      article_section: "Getting Started",
-      url: "URL"
-    }
+    page_meta.tag :og,
+                  image: "IMAGE",
+                  image_type: "image/jpeg",
+                  image_width: 800,
+                  image_height: 600,
+                  description: "DESCRIPTION",
+                  title: "TITLE",
+                  type: "article",
+                  article_author: "John Doe",
+                  article_section: "Getting Started",
+                  url: "URL"
 
-    page_meta.tag :twitter, {
-      card: "summary",
-      site: "@johndoe",
-      domain: "DOMAIN",
-      image: "IMAGE",
-      creator: "@marydoe"
-    }
+    page_meta.tag :twitter,
+                  card: "summary",
+                  site: "@johndoe",
+                  domain: "DOMAIN",
+                  image: "IMAGE",
+                  creator: "@marydoe"
 
     page_meta.link :last, href: "/pages/last"
     page_meta.link :first, href: "/pages/first"

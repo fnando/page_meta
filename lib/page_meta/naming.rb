@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PageMeta
   class Naming
     def initialize(controller)
@@ -12,9 +14,12 @@ module PageMeta
     # Converts `PagesController` into `pages` and
     # `Admin::PagesController` into `admin.pages`.
     def controller
-      @controller ||= @_controller.class.name.underscore
-                        .gsub(/_controller/, "")
-                        .gsub(%r[/], ".")
+      @controller ||= @_controller
+                      .class
+                      .name
+                      .underscore
+                      .gsub(/_controller/, "")
+                      .gsub(%r[/], ".")
     end
   end
 end

@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Helpers
+  # rubocop:disable Lint/UnusedMethodArgument
   def build_controller(class_name, action_name)
     instance_eval <<-RUBY
       klass = Class.new do
@@ -17,7 +20,7 @@ module Helpers
     RUBY
   end
 
-  def set_translations(scopes)
+  def translations(scopes)
     translations = {}
 
     scopes.each do |scope, value|

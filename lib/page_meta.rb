@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PageMeta
   require "i18n"
   require "rails/railtie"
@@ -5,6 +7,7 @@ module PageMeta
   require "page_meta/version"
   require "page_meta/base"
   require "page_meta/meta_tag"
+  require "page_meta/hash_meta_tag"
   require "page_meta/meta_tag/charset"
   require "page_meta/meta_tag/dns_prefetch_control"
   require "page_meta/meta_tag/title"

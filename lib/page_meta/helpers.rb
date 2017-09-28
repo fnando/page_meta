@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PageMeta
   module Helpers
     def page_meta

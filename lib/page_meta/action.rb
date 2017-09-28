@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module PageMeta
   class Action
+    # rubocop:disable Style/MutableConstant
     ALIASES = {
       "update"  => "edit",
       "create"  => "new",

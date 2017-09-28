@@ -1,8 +1,14 @@
+# frozen_string_literal: true
+
 module PageMeta
   class Link
     def self.build(rel, options)
       klass_name = "::PageMeta::Link::#{rel.to_s.camelize}"
-      klass = const_get(klass_name) rescue Link
+      klass = begin
+                const_get(klass_name)
+              rescue ActionView::Template::Error, NameError
+                Link
+              end
       klass.new(rel, options)
     end
 

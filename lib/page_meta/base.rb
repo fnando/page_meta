@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 module PageMeta
   class Base
+    DEFAULT_META_TAGS = %i[language charset title keywords description].freeze
+
     attr_reader :controller, :store
 
     delegate :[], :[]=, to: :store
@@ -62,10 +66,28 @@ module PageMeta
     end
 
     def compute_default_meta_tags
+      DEFAULT_META_TAGS.each do |method_name|
+        public_send("compute_default_#{method_name}")
+      end
+    end
+
+    def compute_default_language
       tag(:language, I18n.locale)
-      tag(:charset, Rails.configuration.encoding)
+    end
+
+    def compute_default_title
       tag(:title, title) unless title.to_s.empty?
+    end
+
+    def compute_default_charset
+      tag(:charset, Rails.configuration.encoding)
+    end
+
+    def compute_default_keywords
       tag(:keywords, keywords.to_s) unless keywords.to_s.empty?
+    end
+
+    def compute_default_description
       tag(:description, description.to_s) unless description.to_s.empty?
     end
   end

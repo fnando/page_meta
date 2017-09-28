@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class TranslatorTest < Minitest::Test
@@ -6,8 +8,8 @@ class TranslatorTest < Minitest::Test
   end
 
   test "with controller name" do
-    set_translations "page_meta.titles.things.show" => "TITLE",
-                     "page_meta.titles.base" => "%{value} • SITE"
+    translations "page_meta.titles.things.show" => "TITLE",
+                 "page_meta.titles.base" => "%{value} • SITE"
 
     controller = build_controller("ThingsController", "show")
     naming = PageMeta::Naming.new(controller)
@@ -18,7 +20,7 @@ class TranslatorTest < Minitest::Test
   end
 
   test "without base translation" do
-    set_translations "page_meta.titles.things.show" => "TITLE"
+    translations "page_meta.titles.things.show" => "TITLE"
 
     controller = build_controller("ThingsController", "show")
     naming = PageMeta::Naming.new(controller)
@@ -29,7 +31,7 @@ class TranslatorTest < Minitest::Test
   end
 
   test "with namespaced controller" do
-    set_translations "page_meta.titles.admin.things.show" => "TITLE"
+    translations "page_meta.titles.admin.things.show" => "TITLE"
 
     controller = build_controller("Admin::ThingsController", "show")
     naming = PageMeta::Naming.new(controller)
@@ -39,7 +41,7 @@ class TranslatorTest < Minitest::Test
   end
 
   test "with placeholders" do
-    set_translations "page_meta.titles.things.show" => "%{title}"
+    translations "page_meta.titles.things.show" => "%{title}"
 
     controller = build_controller("ThingsController", "show")
     naming = PageMeta::Naming.new(controller)

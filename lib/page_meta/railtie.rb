@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PageMeta
   class Railtie < Rails::Railtie
     initializer "page_meta" do

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require "simplecov"
 SimpleCov.start
 
 require "bundler/setup"
-require "test_notifier"
 require "minitest/autorun"
 require "minitest/utils"
 

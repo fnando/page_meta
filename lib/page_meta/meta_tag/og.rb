@@ -1,14 +1,10 @@
+# frozen_string_literal: true
+
 module PageMeta
   class MetaTag
-    class Og < MetaTag
-      def render
-        return if content.empty?
-
-        content.each_with_object("") do |(attr, value), buffer|
-          next if value.blank?
-          attr = attr.to_s.gsub(/_/, ":")
-          buffer << helpers.tag(:meta, property: "og:#{attr}", content: value)
-        end
+    class Og < HashMetaTag
+      def base_name
+        "og"
       end
     end
   end

@@ -1,10 +1,16 @@
+# frozen_string_literal: true
+
 module PageMeta
   class MetaTag
     attr_reader :name, :content
 
     def self.build(name, content)
       klass_name = "::PageMeta::MetaTag::#{name.to_s.camelize}"
-      klass = const_get(klass_name) rescue MetaTag
+      klass = begin
+                const_get(klass_name)
+              rescue ActionView::Template::Error, NameError
+                MetaTag
+              end
       klass.new(name, content)
     end
 
@@ -26,7 +32,7 @@ module PageMeta
         return if content.empty?
 
         helpers.tag(:meta, name: name, content: content) +
-        helpers.tag(:meta, itemprop: name, content: content)
+          helpers.tag(:meta, itemprop: name, content: content)
       end
     end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PageMeta
   class Translator
     attr_reader :scope, :naming, :options
