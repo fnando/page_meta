@@ -87,7 +87,7 @@ en:
     descriptions:
       site:
         home: MyApp is the best way of doing something.
-    
+
     keywords:
       site:
         home: "myapp, thing, other thing"
@@ -128,7 +128,7 @@ Finally, you can define meta tags for Facebook and Twitter:
 ```ruby
 # Meta tags for Facebook
 page_meta.tag :og, {
-  image: asset_url("fb.png"),
+  image: helpers.asset_url("fb.png"),
   image_type: "image/png",
   image_width: 800,
   image_height: 600,
@@ -144,7 +144,7 @@ page_meta.tag :twitter, {
   description: @workshop.description,
   site: "@howto",
   creator: "@fnando",
-  image: asset_url(@workshop.cover_image)
+  image: helpers.asset_url(@workshop.cover_image)
 }
 ```
 
@@ -161,7 +161,7 @@ page_meta.link :first, href: article_url(articles.first)
 The hash can be any of the link tag's attributes. The following example defines the Safari 9 Pinned Tab icon:
 
 ```ruby
-page_meta.link :mask_icon, color: "#4078c0", href: asset_url("mask_icon.svg")
+page_meta.link :mask_icon, color: "#4078c0", href: helpers.asset_url("mask_icon.svg")
 ```
 
 ### Rendering the elements
