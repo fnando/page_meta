@@ -105,4 +105,10 @@ class PagesControllerTest < ActionController::TestCase
     get :show
     assert_select "link[rel='fluid-icon'][type='image/png'][href='fluid.icon']"
   end
+
+  test "render multiple tags with same rel" do
+    get :show
+    assert_select "link[rel='apple-touch-icon'][sizes='512x512'][href='/launcher-512.png']"
+    assert_select "link[rel='apple-touch-icon'][sizes='1024x1024'][href='/launcher-1024.png']"
+  end
 end

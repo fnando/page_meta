@@ -18,15 +18,15 @@ module PageMeta
     end
 
     def links
-      @links ||= {}
+      @links ||= []
     end
 
     def tag(name, value)
       meta_tags[name] = value
     end
 
-    def link(name, value)
-      links[name] = value
+    def link(rel, options)
+      links << {rel: rel, options: options}
     end
 
     def title
@@ -60,7 +60,7 @@ module PageMeta
 
     def render_links
       links
-        .map {|rel, options| Link.build(rel, options).render }
+        .map {|info| Link.build(info[:rel], info[:options]).render }
         .join("")
         .html_safe
     end
