@@ -28,4 +28,20 @@ class SiteControllerTest < ActionController::TestCase
       assert_equal "mysite, saas", node.first[:content]
     end
   end
+
+  test "render html description as a paragraph" do
+    get :home
+
+    assert_select ".description" do |node|
+      assert_equal "The <strong>best way</strong> of doing something", node.first.inner_html
+    end
+  end
+
+  test "defaults description to the text version when html is not available" do
+    get :about
+
+    assert_select ".description" do |node|
+      assert_equal "This is about something", node.first.inner_html
+    end
+  end
 end

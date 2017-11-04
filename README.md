@@ -180,6 +180,17 @@ To render all tags, just do something like this:
 </html>
 ```
 
+#### Rendering titles and descriptions
+
+You may want to render title and description on your page. In this case, you may use something like this:
+
+```erb
+<h1><%= page_meta.title.simple %></h1>
+<p><%= page_meta.description.simple %></p>
+```
+
+If your description contains HTML, you can use `page_meta.description(html: true).simple` instead. It will use Rails' `html_safe` helpers to safely retrieve the translation, just like regular Rails would do. [Please read Rails docs](http://guides.rubyonrails.org/i18n.html#using-safe-html-translations) for more info.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

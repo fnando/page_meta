@@ -10,7 +10,10 @@ en:
 
     descriptions:
       site:
+        about: "This is about something"
+
         home: "The best way of doing something"
+        home_html: "The <strong>best way</strong> of doing something"
 
     keywords:
       site:

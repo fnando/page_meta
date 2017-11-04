@@ -10,6 +10,7 @@ module PageMeta
 
     def initialize(controller)
       @controller = controller
+      @description = {}
       @store = {}
     end
 
@@ -33,8 +34,8 @@ module PageMeta
       @title ||= Translator.new(:titles, naming, store)
     end
 
-    def description
-      @description ||= Translator.new(:descriptions, naming, store)
+    def description(html: false)
+      @description[html] ||= Translator.new(:descriptions, naming, store.merge(html: html))
     end
 
     def keywords

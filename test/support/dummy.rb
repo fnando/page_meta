@@ -20,6 +20,7 @@ Dummy::Application.initialize!
 
 Rails.application.routes.draw do
   root to: "site#home"
+  get "about", to: "site#about"
   get "page", to: "pages#show"
   get "article", to: "pages#article"
 end
@@ -30,6 +31,8 @@ end
 
 class SiteController < ApplicationController
   def home; end
+
+  def about; end
 end
 
 class PagesController < ApplicationController
@@ -70,6 +73,7 @@ class PagesController < ApplicationController
 
     page_meta.link :apple_touch_icon, sizes: "512x512", href: "/launcher-512.png"
     page_meta.link :apple_touch_icon, sizes: "1024x1024", href: "/launcher-1024.png"
+    # rubocop:enable Metrics/AbcSize
   end
 
   def article
