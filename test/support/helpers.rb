@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 module Helpers
-  # rubocop:disable Lint/UnusedMethodArgument
-  def build_controller(class_name, action_name)
-    instance_eval <<-RUBY
+  def build_controller(class_name, action_name) # rubocop:disable Lint/UnusedMethodArgument
+    instance_eval <<-RUBY, __FILE__, __LINE__ + 1
       klass = Class.new do
         attr_reader :action_name
 

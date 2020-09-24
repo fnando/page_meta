@@ -46,7 +46,7 @@ module PageMeta
       compute_default_meta_tags
       render_meta_tags + render_links
     end
-    alias_method :to_s, :render
+    alias to_s render
 
     def naming
       @naming ||= Naming.new(controller)

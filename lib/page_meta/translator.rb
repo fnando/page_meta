@@ -15,6 +15,7 @@ module PageMeta
 
     def to_s
       return "" if simple.blank?
+
       t("page_meta.#{scope}.base", value: simple, default: simple)
     end
 

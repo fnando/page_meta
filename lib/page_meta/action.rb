@@ -4,10 +4,11 @@ module PageMeta
   class Action
     # rubocop:disable Style/MutableConstant
     ALIASES = {
-      "update"  => "edit",
-      "create"  => "new",
+      "update" => "edit",
+      "create" => "new",
       "destroy" => "remove"
     }
+    # rubocop:enable Style/MutableConstant
 
     def initialize(action)
       @action = action

@@ -7,10 +7,10 @@ module PageMeta
     def self.build(name, content)
       klass_name = "::PageMeta::MetaTag::#{name.to_s.camelize}"
       klass = begin
-                const_get(klass_name)
-              rescue ActionView::Template::Error, NameError
-                MetaTag
-              end
+        const_get(klass_name)
+      rescue ActionView::Template::Error, NameError
+        MetaTag
+      end
       klass.new(name, content)
     end
 

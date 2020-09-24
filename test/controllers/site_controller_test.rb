@@ -33,7 +33,8 @@ class SiteControllerTest < ActionController::TestCase
     get :home
 
     assert_select ".description" do |node|
-      assert_equal "The <strong>best way</strong> of doing something", node.first.inner_html
+      assert_equal "The <strong>best way</strong> of doing something",
+                   node.first.inner_html
     end
   end
 

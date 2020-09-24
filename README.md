@@ -1,12 +1,12 @@
 # PageMeta
 
-[![Travis-CI](https://travis-ci.org/fnando/page_meta.png)](https://travis-ci.org/fnando/page_meta)
+[![Travis-CI](https://travis-ci.org/fnando/page_meta.svg)](https://travis-ci.org/fnando/page_meta)
 [![Code Climate](https://codeclimate.com/github/fnando/page_meta/badges/gpa.svg)](https://codeclimate.com/github/fnando/page_meta)
-[![Test Coverage](https://codeclimate.com/github/fnando/page_meta/badges/coverage.svg)](https://codeclimate.com/github/fnando/page_meta/coverage)
 [![Gem](https://img.shields.io/gem/v/page_meta.svg)](https://rubygems.org/gems/page_meta)
 [![Gem](https://img.shields.io/gem/dt/page_meta.svg)](https://rubygems.org/gems/page_meta)
 
-Easily define `<meta>` and `<link>` tags. I18n support for descriptions, keywords and titles.
+Easily define `<meta>` and `<link>` tags. I18n support for descriptions,
+keywords and titles.
 
 ## Installation
 
@@ -26,15 +26,19 @@ Or install it yourself as:
 
 ## Usage
 
-Your controller and views have an object called `page_meta`. You can use it to define meta tags and links. By default, it will include the encoding and language meta tags.
+Your controller and views have an object called `page_meta`. You can use it to
+define meta tags and links. By default, it will include the encoding and
+language meta tags.
 
 ```html
-<meta charset="utf-8">
-<meta name="language" content="en">
-<meta itemprop="language" content="en">
+<meta charset="utf-8" />
+<meta name="language" content="en" />
+<meta itemprop="language" content="en" />
 ```
 
-You can use I18n to define titles, descriptions and keywords. These values will be inferred from the controller and action names. For an action `SiteController#index` you'll need the following translation scope:
+You can use I18n to define titles, descriptions and keywords. These values will
+be inferred from the controller and action names. For an action
+`SiteController#index` you'll need the following translation scope:
 
 ```yaml
 page_meta:
@@ -44,14 +48,16 @@ page_meta:
       index: "Welcome to MyApp"
 ```
 
-The title can without the `base` context can be accessed through `page_meta.title.simple`.
+The title can without the `base` context can be accessed through
+`page_meta.title.simple`.
 
 ```erb
 <%= page_meta.title %>          // Welcome to MyApp • MyApp
 <%= page_meta.title.simple %>   // Welcome to MyApp
 ```
 
-Sometimes you need to render some dynamic value. In this case, you can use the I18n placeholders.
+Sometimes you need to render some dynamic value. In this case, you can use the
+I18n placeholders.
 
 ```yaml
 en:
@@ -75,9 +81,9 @@ end
 
 Some actions are aliased, so you don't have to duplicate the translations:
 
-* Action `create` points to `new`
-* Action `update` points to `edit`
-* Action `destroy` points to `remove`
+- Action `create` points to `new`
+- Action `update` points to `edit`
+- Action `destroy` points to `remove`
 
 The same concept is applied to descriptions and keywords.
 
@@ -95,7 +101,8 @@ en:
 
 ### Defining meta tags
 
-To define other meta tags, you have to use `PageMeta::Base#tag` like the following:
+To define other meta tags, you have to use `PageMeta::Base#tag` like the
+following:
 
 ```ruby
 class Workshops Controller < ApplicationController
@@ -158,7 +165,8 @@ page_meta.link :last, href: article_url(articles.last)
 page_meta.link :first, href: article_url(articles.first)
 ```
 
-The hash can be any of the link tag's attributes. The following example defines the Safari 9 Pinned Tab icon:
+The hash can be any of the link tag's attributes. The following example defines
+the Safari 9 Pinned Tab icon:
 
 ```ruby
 page_meta.link :mask_icon, color: "#4078c0", href: helpers.asset_url("mask_icon.svg")
@@ -182,26 +190,41 @@ To render all tags, just do something like this:
 
 #### Rendering titles and descriptions
 
-You may want to render title and description on your page. In this case, you may use something like this:
+You may want to render title and description on your page. In this case, you may
+use something like this:
 
 ```erb
 <h1><%= page_meta.title.simple %></h1>
 <p><%= page_meta.description.simple %></p>
 ```
 
-If your description contains HTML, you can use `page_meta.description(html: true).simple` instead. It will use Rails' `html_safe` helpers to safely retrieve the translation, just like regular Rails would do. [Please read Rails docs](http://guides.rubyonrails.org/i18n.html#using-safe-html-translations) for more info.
+If your description contains HTML, you can use
+`page_meta.description(html: true).simple` instead. It will use Rails'
+`html_safe` helpers to safely retrieve the translation, just like regular Rails
+would do.
+[Please read Rails docs](http://guides.rubyonrails.org/i18n.html#using-safe-html-translations)
+for more info.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run
+`rake test` to run the tests. You can also run `bin/console` for an interactive
+prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`. To
+release a new version, update the version number in `version.rb`, and then run
+`bundle exec rake release`, which will create a git tag for the version, push
+git commits and tags, and push the `.gem` file to
+[rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/fnando/page_meta. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
-
+Bug reports and pull requests are welcome on GitHub at
+https://github.com/fnando/page_meta. This project is intended to be a safe,
+welcoming space for collaboration, and contributors are expected to adhere to
+the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the
+[MIT License](http://opensource.org/licenses/MIT).

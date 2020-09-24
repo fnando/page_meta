@@ -5,10 +5,10 @@ module PageMeta
     def self.build(rel, options)
       klass_name = "::PageMeta::Link::#{rel.to_s.camelize}"
       klass = begin
-                const_get(klass_name)
-              rescue ActionView::Template::Error, NameError
-                Link
-              end
+        const_get(klass_name)
+      rescue ActionView::Template::Error, NameError
+        Link
+      end
       klass.new(rel, options)
     end
 
