@@ -7,7 +7,10 @@ Gem::Specification.new do |spec|
   spec.version       = PageMeta::VERSION
   spec.authors       = ["Nando Vieira"]
   spec.email         = ["fnando.vieira@gmail.com"]
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.7.0")
+  spec.metadata = {
+    "rubygems_mfa_required" => "true"
+  }
 
   spec.summary       = "Easily define <meta> and <link> tags. I18n support " \
                        "for descriptions, keywords and titles."
@@ -22,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) {|f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rails"
+  spec.add_dependency "rails", ">=6.0"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "minitest-utils"

@@ -8,9 +8,11 @@ AllCops:
   Exclude:
     - test/support/dummy.rb
     - vendor/**/*
+    - bin/**/*
+    - gemfiles/vendor/**/*
 
 Layout/LineLength:
   Enabled: false
 
-Metrics/MethodLength:
+Metrics:
   Enabled: false
