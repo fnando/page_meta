@@ -2,7 +2,7 @@
 
 module Helpers
   def build_controller(class_name, action_name) # rubocop:disable Lint/UnusedMethodArgument
-    instance_eval <<-RUBY, __FILE__, __LINE__ + 1
+    instance_eval <<-RUBY, __FILE__, __LINE__ + 1 # rubocop:disable Style/DocumentDynamicEvalDefinition
       klass = Class.new do
         attr_reader :action_name
 

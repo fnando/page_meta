@@ -26,8 +26,8 @@ module PageMeta
     def simple
       override_options = options.merge(default: "")
 
-      translation = t("#{translation_scope}_html", override_options) if html
-      translation = t(translation_scope, override_options) if translation.blank?
+      translation = t("#{translation_scope}_html", **override_options) if html
+      translation = t(translation_scope, **override_options) if translation.blank?
       translation
     end
   end

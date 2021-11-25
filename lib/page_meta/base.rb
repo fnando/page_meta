@@ -55,14 +55,14 @@ module PageMeta
     def render_meta_tags
       meta_tags
         .map {|name, value| MetaTag.build(name, value).render }
-        .join("")
+        .join
         .html_safe
     end
 
     def render_links
       links
         .map {|info| Link.build(info[:rel], info[:options]).render }
-        .join("")
+        .join
         .html_safe
     end
 

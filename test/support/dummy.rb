@@ -38,7 +38,6 @@ class SiteController < ApplicationController
 end
 
 class PagesController < ApplicationController
-  # rubocop:disable Metrics/AbcSize
   def show
     page_meta.tag :author, "John Doe"
     page_meta.tag :robots, "index, follow"
@@ -75,7 +74,6 @@ class PagesController < ApplicationController
 
     page_meta.link :apple_touch_icon, sizes: "512x512", href: "/launcher-512.png"
     page_meta.link :apple_touch_icon, sizes: "1024x1024", href: "/launcher-1024.png"
-    # rubocop:enable Metrics/AbcSize
   end
 
   def article

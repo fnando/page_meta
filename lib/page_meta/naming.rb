@@ -19,7 +19,7 @@ module PageMeta
                       .name
                       .underscore
                       .gsub(/_controller/, "")
-                      .gsub(%r{/}, ".")
+                      .tr("/", ".")
     end
   end
 end
