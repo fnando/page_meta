@@ -2,47 +2,99 @@
 
 require "test_helper"
 
-class SiteControllerTest < ActionController::TestCase
-  setup do
-    @routes = Rails.application.routes
-    reset_i18n!(Dir["./test/support/config/locales/**/*.yml"])
-  end
+module SiteControllerTest
+  class NewFormatTest < ActionController::TestCase
+    tests SiteController
 
-  test "render title for simple controller" do
-    get :home
-    assert_select "title", "Welcome • Dummy"
-  end
+    setup do
+      @routes = Rails.application.routes
+      reset_i18n!(Dir["./test/support/config/locales/**/*.yml"])
+    end
 
-  test "render description for simple controller" do
-    get :home
+    test "render title for simple controller" do
+      get :home
+      assert_select "title", "Welcome • Dummy"
+    end
 
-    assert_select "meta[name=description]" do |node|
-      assert_equal "The best way of doing something", node.first[:content]
+    test "render description for simple controller" do
+      get :home
+
+      assert_select "meta[name=description]" do |node|
+        assert_equal "The best way of doing something", node.first[:content]
+      end
+    end
+
+    test "render keywords for simple controller" do
+      get :home
+
+      assert_select "meta[name=keywords]" do |node|
+        assert_equal "mysite, saas", node.first[:content]
+      end
+    end
+
+    test "render html description as a paragraph" do
+      get :home
+
+      assert_select ".description" do |node|
+        assert_equal "The <strong>best way</strong> of doing something",
+                     node.first.inner_html
+      end
+    end
+
+    test "defaults description to the text version when html is not available" do
+      get :about
+
+      assert_select ".description" do |node|
+        assert_equal "This is about something", node.first.inner_html
+      end
     end
   end
 
-  test "render keywords for simple controller" do
-    get :home
+  class OldFormatTest < ActionController::TestCase
+    tests SiteController
 
-    assert_select "meta[name=keywords]" do |node|
-      assert_equal "mysite, saas", node.first[:content]
+    setup do
+      @routes = Rails.application.routes
+      reset_i18n!(Dir["./test/support/config/locales_old_format/**/*.yml"])
     end
-  end
 
-  test "render html description as a paragraph" do
-    get :home
-
-    assert_select ".description" do |node|
-      assert_equal "The <strong>best way</strong> of doing something",
-                   node.first.inner_html
+    test "render title for simple controller" do
+      get :home
+      assert_select "title", "Welcome • Dummy"
     end
-  end
 
-  test "defaults description to the text version when html is not available" do
-    get :about
+    test "render description for simple controller" do
+      get :home
 
-    assert_select ".description" do |node|
-      assert_equal "This is about something", node.first.inner_html
+      assert_select "meta[name=description]" do |node|
+        assert_equal "The best way of doing something", node.first[:content]
+      end
+    end
+
+    test "render keywords for simple controller" do
+      get :home
+
+      assert_select "meta[name=keywords]" do |node|
+        assert_equal "mysite, saas", node.first[:content]
+      end
+    end
+
+    test "render html description as a paragraph" do
+      get :home
+
+      assert_select ".description" do |node|
+        assert_equal "The <strong>best way</strong> of doing something",
+                     node.first.inner_html
+      end
+    end
+
+    test "defaults description to the text version when html is not available" do
+      get :about
+
+      assert_select ".description" do |node|
+        assert_equal "This is about something", node.first.inner_html
+      end
     end
   end
 end
+

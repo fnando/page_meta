@@ -1,20 +1,19 @@
+---
 en:
   page_meta:
-    titles:
-      base: "%{value} • Dummy"
-      site:
-        home: Welcome
-      pages:
-        show: "Show Page"
-        article: "%{title}"
+    title_base: "%{value} • Dummy"
 
-    descriptions:
-      site:
-        about: "This is about something"
+    site:
+      home:
+        title: Welcome
+        description: "The best way of doing something"
+        description_html: "The <strong>best way</strong> of doing something"
+        keywords: "mysite, saas"
+      about:
+        description: "This is about something"
 
-        home: "The best way of doing something"
-        home_html: "The <strong>best way</strong> of doing something"
-
-    keywords:
-      site:
-        home: "mysite, saas"
+    pages:
+      show:
+        title: "Show Page"
+      article:
+        title: "%{title}"

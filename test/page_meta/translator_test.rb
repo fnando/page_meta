@@ -68,4 +68,32 @@ class TranslatorTest < Minitest::Test
 
     assert_equal "<strong>DESCRIPTION</strong>", translator.to_s
   end
+
+  test "with grouped translations" do
+    translations "page_meta.things.show" => {
+      description: "DESCRIPTION",
+      title: "TITLE"
+    }
+
+    controller = build_controller("ThingsController", "show")
+    naming = PageMeta::Naming.new(controller)
+    title_translator = PageMeta::Translator.new(:titles, naming)
+    description_translator = PageMeta::Translator.new(:descriptions, naming)
+
+    assert_equal "TITLE", title_translator.to_s
+    assert_equal "TITLE", title_translator.simple
+    assert_equal "DESCRIPTION", description_translator.simple
+  end
+
+  test "with grouped translations using a new base translation" do
+    translations "page_meta.things.show" => {title: "TITLE"},
+                 "page_meta.title_base" => "%{value} • SITE"
+
+    controller = build_controller("ThingsController", "show")
+    naming = PageMeta::Naming.new(controller)
+    title_translator = PageMeta::Translator.new(:titles, naming)
+
+    assert_equal "TITLE • SITE", title_translator.to_s
+    assert_equal "TITLE", title_translator.simple
+  end
 end

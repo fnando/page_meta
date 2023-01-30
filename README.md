@@ -36,15 +36,29 @@ be inferred from the controller and action names. For an action
 `SiteController#index` you'll need the following translation scope:
 
 ```yaml
----
-page_meta:
-  titles:
-    base: "%{value} • MyApp"
+en:
+  page_meta:
+    title_base: "%{value} • MyApp"
+
     site:
-      index: "Welcome to MyApp"
+      index:
+        title: "Welcome to MyApp"
 ```
 
-The title can without the `base` context can be accessed through
+Previously, you could also use the `page_meta.titles` scope, but this is now
+deprecated in favor of the above.
+
+```yaml
+---
+en:
+  page_meta:
+    titles:
+      base: "%{value} • MyApp"
+      site:
+        index: "Welcome to MyApp"
+```
+
+The title without the `base` context can be accessed through
 `page_meta.title.simple`.
 
 ```erb
@@ -59,10 +73,11 @@ I18n placeholders.
 ---
 en:
   page_meta:
-    titles:
-      base: "%{title} • MyCompany"
-      workshops:
-        show: "%{name}"
+    title_base: "%{title} • MyCompany"
+
+    workshops:
+      show:
+        title: "%{name}"
 ```
 
 You can then set dynamic values using the `PageMeta::Base#[]=`.
@@ -88,13 +103,12 @@ The same concept is applied to descriptions and keywords.
 ---
 en:
   page_meta:
-    descriptions:
-      site:
-        home: MyApp is the best way of doing something.
-
-    keywords:
-      site:
-        home: "myapp, thing, other thing"
+    base_title: "%{value} • MyApp"
+    site:
+      show:
+        title: "Show"
+        description: MyApp is the best way of doing something.
+        keywords: "myapp, thing, other thing"
 ```
 
 ### Defining meta tags
