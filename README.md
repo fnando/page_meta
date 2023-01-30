@@ -46,7 +46,7 @@ en:
         title: "Welcome to MyApp"
 ```
 
-Previously, you could also use the `page_meta.titles` scope, but this is now
+Previously, you could also use the `page_meta.{titles,description,keywords}` scopes, but this is now
 deprecated in favor of the above.
 
 ```yaml
