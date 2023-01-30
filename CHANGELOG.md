@@ -11,7 +11,7 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
-## Unreleased
+## 1.1.0
 
 - [Added] `<meta name="viewport" content="width=device-width,initial-scale=1">`
   is now added by default.
