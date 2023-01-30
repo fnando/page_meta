@@ -2,7 +2,14 @@
 
 module PageMeta
   class Base
-    DEFAULT_META_TAGS = %i[language charset title keywords description].freeze
+    DEFAULT_META_TAGS = %i[
+      language
+      charset
+      title
+      keywords
+      description
+      viewport
+    ].freeze
 
     attr_reader :controller, :store
 
@@ -90,6 +97,10 @@ module PageMeta
 
     def compute_default_description
       tag(:description, description.to_s) unless description.to_s.empty?
+    end
+
+    def compute_default_viewport
+      tag(:viewport, "width=device-width,initial-scale=1") unless meta_tags[:viewport]
     end
   end
 end

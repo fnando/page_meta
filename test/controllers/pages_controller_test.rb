@@ -13,6 +13,11 @@ class PagesControllerTest < ActionController::TestCase
     assert_select "meta[charset=UTF-8]"
   end
 
+  test "render viewport tag" do
+    get :show
+    assert_select "meta[name=viewport][content='width=device-width,initial-scale=1']"
+  end
+
   test "render language tag" do
     get :show
     assert_select "meta[name=language][content=en]"

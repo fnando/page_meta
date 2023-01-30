@@ -22,13 +22,14 @@ gem "page_meta"
 ## Usage
 
 Your controller and views have an object called `page_meta`. You can use it to
-define meta tags and links. By default, it will include the encoding and
-language meta tags.
+define meta tags and links. By default, it will include the encoding, language
+and viewport meta tags.
 
 ```html
 <meta charset="utf-8" />
 <meta name="language" content="en" />
 <meta itemprop="language" content="en" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 ```
 
 You can use I18n to define titles, descriptions and keywords. These values will
