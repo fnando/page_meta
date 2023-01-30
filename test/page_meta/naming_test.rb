@@ -5,11 +5,13 @@ require "test_helper"
 class NamingTest < Minitest::Test
   test "set class name" do
     controller = build_controller("Admin::PagesController", "show")
+
     assert_equal "Admin::PagesController", controller.class.name
   end
 
   test "set action name" do
     controller = build_controller("Admin::PagesController", "show")
+
     assert_equal "show", controller.action_name
   end
 

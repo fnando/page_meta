@@ -13,6 +13,7 @@ module SiteControllerTest
 
     test "render title for simple controller" do
       get :home
+
       assert_select "title", "Welcome • Dummy"
     end
 
@@ -60,6 +61,7 @@ module SiteControllerTest
 
     test "render title for simple controller" do
       get :home
+
       assert_select "title", "Welcome • Dummy"
     end
 
@@ -97,4 +99,3 @@ module SiteControllerTest
     end
   end
 end
-

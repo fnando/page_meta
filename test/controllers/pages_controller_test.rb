@@ -10,44 +10,52 @@ class PagesControllerTest < ActionController::TestCase
 
   test "render encoding tag" do
     get :show
+
     assert_select "meta[charset=UTF-8]"
   end
 
   test "render viewport tag" do
     get :show
+
     assert_select "meta[name=viewport][content='width=device-width,initial-scale=1']"
   end
 
   test "render language tag" do
     get :show
+
     assert_select "meta[name=language][content=en]"
   end
 
   test "render author tag" do
     get :show
+
     assert_select "meta[name=author][content='John Doe']"
     assert_select "meta[itemprop=author][content='John Doe']"
   end
 
   test "render description tag" do
     get :show
+
     assert_select "meta[name=description][content=DESCRIPTION]"
     assert_select "meta[itemprop=description][content=DESCRIPTION]"
   end
 
   test "render keywords tag" do
     get :show
+
     assert_select "meta[name=keywords][content=KEYWORDS]"
     assert_select "meta[itemprop=keywords][content=KEYWORDS]"
   end
 
   test "render robots tag" do
     get :show
+
     assert_select "meta[name=robots][content='index, follow']"
   end
 
   test "render copyright tag" do
     get :show
+
     assert_select "meta[name=copyright][content='ACME']"
   end
 
@@ -103,16 +111,19 @@ class PagesControllerTest < ActionController::TestCase
 
   test "render title with placeholder" do
     get :article
+
     assert_select "title", "Dynamic Title • Dummy"
   end
 
   test "render fluid icon tag" do
     get :show
+
     assert_select "link[rel='fluid-icon'][type='image/png'][href='fluid.icon']"
   end
 
   test "render multiple tags with same rel" do
     get :show
+
     assert_select "link[rel='apple-touch-icon'][sizes='512x512'][href='/launcher-512.png']"
     assert_select "link[rel='apple-touch-icon'][sizes='1024x1024'][href='/launcher-1024.png']"
   end

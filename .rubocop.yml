@@ -16,3 +16,9 @@ Layout/LineLength:
 
 Metrics:
   Enabled: false
+
+Minitest/MultipleAssertions:
+  Enabled: false
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
