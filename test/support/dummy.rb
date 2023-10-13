@@ -13,10 +13,11 @@ module Dummy
     config.active_support.test_order = :random
     config.secret_key_base = SecureRandom.hex(100)
     config.i18n.load_path += Dir["#{__dir__}/config/locales/**/*.yml"]
+    config.load_defaults Rails.version[0..1].to_f
   end
 end
 
-Dummy::Application.initialize!
+Rails.application.initialize!
 
 Rails.application.routes.draw do
   root to: "site#home"
