@@ -75,7 +75,7 @@ module PageMeta
 
     def compute_default_meta_tags
       DEFAULT_META_TAGS.each do |method_name|
-        public_send("compute_default_#{method_name}")
+        public_send(:"compute_default_#{method_name}")
       end
     end
 

@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = PageMeta::VERSION
   spec.authors       = ["Nando Vieira"]
   spec.email         = ["fnando.vieira@gmail.com"]
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.7.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 3.0.0")
   spec.metadata = {
     "rubygems_mfa_required" => "true"
   }
