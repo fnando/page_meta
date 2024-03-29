@@ -20,7 +20,7 @@ module PageMeta
     end
 
     def render
-      helpers.tag(:meta, name: name, content: content) unless content.empty?
+      helpers.tag(:meta, name:, content:) unless content.empty?
     end
 
     def helpers
@@ -31,8 +31,8 @@ module PageMeta
       def render
         return if content.empty?
 
-        helpers.tag(:meta, name: name, content: content) +
-          helpers.tag(:meta, itemprop: name, content: content)
+        helpers.tag(:meta, name:, content:) +
+          helpers.tag(:meta, itemprop: name, content:)
       end
     end
 
@@ -40,7 +40,7 @@ module PageMeta
       def render
         return if content.empty?
 
-        helpers.tag(:meta, "http-equiv" => name, content: content)
+        helpers.tag(:meta, "http-equiv" => name, content:)
       end
     end
 

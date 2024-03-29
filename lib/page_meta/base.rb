@@ -34,7 +34,7 @@ module PageMeta
     end
 
     def link(rel, options)
-      links << {rel: rel, options: options}
+      links << {rel:, options:}
     end
 
     def title
@@ -42,7 +42,7 @@ module PageMeta
     end
 
     def description(html: false)
-      @description[html] ||= Translator.new(:descriptions, naming, store.merge(html: html))
+      @description[html] ||= Translator.new(:descriptions, naming, store.merge(html:))
     end
 
     def keywords

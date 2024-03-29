@@ -20,7 +20,7 @@ module PageMeta
     end
 
     def render
-      helpers.tag(:link, options.merge(rel: rel)) unless options.empty?
+      helpers.tag(:link, options.merge(rel:)) unless options.empty?
     end
 
     def helpers
