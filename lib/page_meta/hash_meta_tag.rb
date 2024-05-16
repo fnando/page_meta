@@ -7,6 +7,7 @@ module PageMeta
 
       content.each_with_object([]) do |(attr, value), buffer|
         value = value.call if value.respond_to?(:call)
+        value = value.to_s
 
         next if value.blank?
 

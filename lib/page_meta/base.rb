@@ -84,7 +84,7 @@ module PageMeta
     end
 
     def compute_default_title
-      tag(:title, title) unless title.to_s.empty?
+      tag(:title, title) unless title.to_s.blank?
     end
 
     def compute_default_charset
@@ -92,11 +92,11 @@ module PageMeta
     end
 
     def compute_default_keywords
-      tag(:keywords, keywords.to_s) unless keywords.to_s.empty?
+      tag(:keywords, keywords.to_s) unless keywords.to_s.blank?
     end
 
     def compute_default_description
-      tag(:description, description.to_s) unless description.to_s.empty?
+      tag(:description, description.to_s) unless description.to_s.blank?
     end
 
     def compute_default_viewport

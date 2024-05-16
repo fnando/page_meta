@@ -15,6 +15,7 @@ Prefix your message with one of the following:
 
 - [Added] The meta tag's content can also be any object that responds to the
   method `call`, like procs.
+- [Fixed] Fixed case where meta tags were being rendered with blank content.
 
 ## 1.1.0
 

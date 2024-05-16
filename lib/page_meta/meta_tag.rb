@@ -16,15 +16,16 @@ module PageMeta
 
     def initialize(name, content)
       @name = name.to_s.dasherize
-      @content = content
+      @raw_content = content
     end
 
     def content
-      @content.respond_to?(:call) ? @content.call : @content
+      @content ||=
+        @raw_content.respond_to?(:call) ? @raw_content.call : @raw_content
     end
 
     def render
-      helpers.tag(:meta, name:, content:) unless content.empty?
+      helpers.tag(:meta, name:, content:) unless content.blank?
     end
 
     def helpers
@@ -33,7 +34,7 @@ module PageMeta
 
     class MultipleMetaTag < MetaTag
       def render
-        return if content.empty?
+        return if content.blank?
 
         helpers.tag(:meta, name:, content:) +
           helpers.tag(:meta, itemprop: name, content:)
@@ -42,7 +43,7 @@ module PageMeta
 
     class HttpEquiv < MetaTag
       def render
-        return if content.empty?
+        return if content.blank?
 
         helpers.tag(:meta, "http-equiv" => name, content:)
       end
