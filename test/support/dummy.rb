@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get "about", to: "site#about"
   get "page", to: "pages#show"
   get "article", to: "pages#article"
+  get "category", to: "pages#category"
 end
 
 class ApplicationController < ActionController::Base
@@ -75,6 +76,37 @@ class PagesController < ApplicationController
 
     page_meta.link :apple_touch_icon, sizes: "512x512", href: "/launcher-512.png"
     page_meta.link :apple_touch_icon, sizes: "1024x1024", href: "/launcher-1024.png"
+  end
+
+  def category
+    page_meta.tag :author, -> { "John Doe" }
+    page_meta.tag :robots, -> { "index, follow" }
+    page_meta.tag :copyright, -> { "ACME" }
+    page_meta.tag :pragma, -> { "no-cache" }
+    page_meta.tag :description, -> { "DESCRIPTION" }
+    page_meta.tag :dns_prefetch_control, -> { "http://example.com" }
+    page_meta.tag :keywords, -> { "KEYWORDS" }
+
+    page_meta.tag :og,
+                  image: -> { "IMAGE" },
+                  image_type: -> { "image/jpeg" },
+                  image_width: -> { 800 },
+                  image_height: -> { 600 },
+                  description: -> { "DESCRIPTION" },
+                  title: -> { "TITLE" },
+                  type: -> { "article" },
+                  article_author: -> { "John Doe" },
+                  article_section: -> { "Getting Started" },
+                  url: -> { "URL" }
+
+    page_meta.tag :twitter,
+                  card: -> { "summary" },
+                  site: -> { "@johndoe" },
+                  domain: -> { "DOMAIN" },
+                  image: -> { "IMAGE" },
+                  creator: -> { "@marydoe" }
+
+    render :show
   end
 
   def article

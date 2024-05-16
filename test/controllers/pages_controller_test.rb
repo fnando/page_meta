@@ -8,70 +8,98 @@ class PagesControllerTest < ActionController::TestCase
     reset_i18n!(Dir["./test/support/config/locales/**/*.yml"])
   end
 
-  test "render encoding tag" do
-    get :show
+  %i[show category].each do |action|
+    test "#{action} - render encoding tag" do
+      get action
 
-    assert_select "meta[charset=UTF-8]"
-  end
+      assert_select "meta[charset=UTF-8]"
+    end
 
-  test "render viewport tag" do
-    get :show
+    test "#{action} - render viewport tag" do
+      get action
 
-    assert_select "meta[name=viewport][content='width=device-width,initial-scale=1']"
-  end
+      assert_select "meta[name=viewport][content='width=device-width,initial-scale=1']"
+    end
 
-  test "render language tag" do
-    get :show
+    test "#{action} - render language tag" do
+      get action
 
-    assert_select "meta[name=language][content=en]"
-  end
+      assert_select "meta[name=language][content=en]"
+    end
 
-  test "render author tag" do
-    get :show
+    test "#{action} - render author tag" do
+      get action
 
-    assert_select "meta[name=author][content='John Doe']"
-    assert_select "meta[itemprop=author][content='John Doe']"
-  end
+      assert_select "meta[name=author][content='John Doe']"
+      assert_select "meta[itemprop=author][content='John Doe']"
+    end
 
-  test "render description tag" do
-    get :show
+    test "#{action} - render description tag" do
+      get action
 
-    assert_select "meta[name=description][content=DESCRIPTION]"
-    assert_select "meta[itemprop=description][content=DESCRIPTION]"
-  end
+      assert_select "meta[name=description][content=DESCRIPTION]"
+      assert_select "meta[itemprop=description][content=DESCRIPTION]"
+    end
 
-  test "render keywords tag" do
-    get :show
+    test "#{action} - render keywords tag" do
+      get action
 
-    assert_select "meta[name=keywords][content=KEYWORDS]"
-    assert_select "meta[itemprop=keywords][content=KEYWORDS]"
-  end
+      assert_select "meta[name=keywords][content=KEYWORDS]"
+      assert_select "meta[itemprop=keywords][content=KEYWORDS]"
+    end
 
-  test "render robots tag" do
-    get :show
+    test "#{action} - render robots tag" do
+      get action
 
-    assert_select "meta[name=robots][content='index, follow']"
-  end
+      assert_select "meta[name=robots][content='index, follow']"
+    end
 
-  test "render copyright tag" do
-    get :show
+    test "#{action} - render copyright tag" do
+      get action
 
-    assert_select "meta[name=copyright][content='ACME']"
-  end
+      assert_select "meta[name=copyright][content='ACME']"
+    end
 
-  test "render dns prefetch tag" do
-    get :show
+    test "#{action} - render dns prefetch tag" do
+      get action
 
-    assert_select "meta[http-equiv=x-dns-prefetch-control][content=on]"
-    assert_select "link[rel=dns-prefetch][href='http://example.com']"
-  end
+      assert_select "meta[http-equiv=x-dns-prefetch-control][content=on]"
+      assert_select "link[rel=dns-prefetch][href='http://example.com']"
+    end
 
-  test "render title" do
-    get :show
+    test "#{action} - render title" do
+      get action
 
-    assert_select "title", "Show Page • Dummy"
-    assert_select "meta[name='DC.title'][content='Show Page']"
-    assert_select "meta[itemprop=name][content='Show Page']"
+      assert_select "title", "Show Page • Dummy"
+      assert_select "meta[name='DC.title'][content='Show Page']"
+      assert_select "meta[itemprop=name][content='Show Page']"
+    end
+
+    test "#{action} - render og" do
+      get action
+
+      assert_select "meta[property='og:type'][content=article]"
+      assert_select "meta[property='og:image'][content=IMAGE]"
+      assert_select "meta[property='og:image:type'][content='image/jpeg']"
+      assert_select "meta[property='og:image:width'][content='800']"
+      assert_select "meta[property='og:image:height'][content='600']"
+      assert_select "meta[property='og:description'][content=DESCRIPTION]"
+      assert_select "meta[property='og:title'][content='TITLE']"
+      assert_select "meta[property='og:type'][content=article]"
+      assert_select "meta[property='og:article:author'][content='John Doe']"
+      assert_select "meta[property='og:article:section'][content='Getting Started']"
+      assert_select "meta[property='og:url'][content='URL']"
+    end
+
+    test "#{action} - render twitter" do
+      get action
+
+      assert_select "meta[property='twitter:card'][content=summary]"
+      assert_select "meta[property='twitter:site'][content='@johndoe']"
+      assert_select "meta[property='twitter:domain'][content='DOMAIN']"
+      assert_select "meta[property='twitter:image'][content='IMAGE']"
+      assert_select "meta[property='twitter:creator'][content='@marydoe']"
+    end
   end
 
   test "render links" do
@@ -81,32 +109,6 @@ class PagesControllerTest < ActionController::TestCase
     assert_select "link[rel=first][href='/pages/first']"
     assert_select "link[rel=next][href='/pages/next']"
     assert_select "link[rel=previous][href='/pages/previous']"
-  end
-
-  test "render og" do
-    get :show
-
-    assert_select "meta[property='og:type'][content=article]"
-    assert_select "meta[property='og:image'][content=IMAGE]"
-    assert_select "meta[property='og:image:type'][content='image/jpeg']"
-    assert_select "meta[property='og:image:width'][content='800']"
-    assert_select "meta[property='og:image:height'][content='600']"
-    assert_select "meta[property='og:description'][content=DESCRIPTION]"
-    assert_select "meta[property='og:title'][content='TITLE']"
-    assert_select "meta[property='og:type'][content=article]"
-    assert_select "meta[property='og:article:author'][content='John Doe']"
-    assert_select "meta[property='og:article:section'][content='Getting Started']"
-    assert_select "meta[property='og:url'][content='URL']"
-  end
-
-  test "render twitter" do
-    get :show
-
-    assert_select "meta[property='twitter:card'][content=summary]"
-    assert_select "meta[property='twitter:site'][content='@johndoe']"
-    assert_select "meta[property='twitter:domain'][content='DOMAIN']"
-    assert_select "meta[property='twitter:image'][content='IMAGE']"
-    assert_select "meta[property='twitter:creator'][content='@marydoe']"
   end
 
   test "render title with placeholder" do

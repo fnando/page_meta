@@ -2,7 +2,7 @@
 
 module PageMeta
   class MetaTag
-    attr_reader :name, :content
+    attr_reader :name
 
     def self.build(name, content)
       klass_name = "::PageMeta::MetaTag::#{name.to_s.camelize}"
@@ -17,6 +17,10 @@ module PageMeta
     def initialize(name, content)
       @name = name.to_s.dasherize
       @content = content
+    end
+
+    def content
+      @content.respond_to?(:call) ? @content.call : @content
     end
 
     def render

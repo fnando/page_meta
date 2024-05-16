@@ -46,8 +46,8 @@ en:
         title: "Welcome to MyApp"
 ```
 
-Previously, you could also use the `page_meta.{titles,description,keywords}` scopes, but this is now
-deprecated in favor of the above.
+Previously, you could also use the `page_meta.{titles,description,keywords}`
+scopes, but this is now deprecated in favor of the above.
 
 ```yaml
 ---
@@ -126,6 +126,11 @@ class Workshops Controller < ApplicationController
   end
 end
 ```
+
+> [!TIP]
+>
+> The meta tag's content can also be any object that responds to the method
+> `call`. This way you can lazy evaluate the content.
 
 You can define default meta/link tags in a `before_action`:
 

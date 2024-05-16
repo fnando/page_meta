@@ -15,5 +15,7 @@ en:
     pages:
       show:
         title: "Show Page"
+      category:
+        title: "Show Page"
       article:
         title: "%{title}"

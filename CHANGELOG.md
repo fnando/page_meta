@@ -11,6 +11,11 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
+## Unreleased
+
+- [Added] The meta tag's content can also be any object that responds to the
+  method `call`, like procs.
+
 ## 1.1.0
 
 - [Added] `<meta name="viewport" content="width=device-width,initial-scale=1">`
