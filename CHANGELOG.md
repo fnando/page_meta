@@ -11,7 +11,7 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
-## Unreleased
+## 1.2.0
 
 - [Added] The meta tag's content can also be any object that responds to the
   method `call`, like procs.
