@@ -42,7 +42,7 @@ module SiteControllerTest
       end
     end
 
-    test "defaults description to the text version when html is not available" do
+    test "defaults description to the text version when html is not set" do
       get :about
 
       assert_select ".description" do |node|
@@ -90,7 +90,7 @@ module SiteControllerTest
       end
     end
 
-    test "defaults description to the text version when html is not available" do
+    test "defaults description to the text version when html is not set" do
       get :about
 
       assert_select ".description" do |node|

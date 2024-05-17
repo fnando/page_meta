@@ -74,8 +74,12 @@ class PagesController < ApplicationController
     page_meta.link :previous, href: "/pages/previous"
     page_meta.link :fluid_icon, type: "image/png", href: "fluid.icon"
 
-    page_meta.link :apple_touch_icon, sizes: "512x512", href: "/launcher-512.png"
-    page_meta.link :apple_touch_icon, sizes: "1024x1024", href: "/launcher-1024.png"
+    page_meta.link :apple_touch_icon,
+                   sizes: "512x512",
+                   href: "/launcher-512.png"
+    page_meta.link :apple_touch_icon,
+                   sizes: "1024x1024",
+                   href: "/launcher-1024.png"
   end
 
   def category

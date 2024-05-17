@@ -20,8 +20,11 @@ module PageMeta
     end
 
     def content
-      @content ||=
-        @raw_content.respond_to?(:call) ? @raw_content.call : @raw_content
+      @content ||= if @raw_content.respond_to?(:call)
+                     @raw_content.call
+                   else
+                     @raw_content
+                   end
     end
 
     def render

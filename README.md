@@ -112,6 +112,14 @@ en:
         keywords: "myapp, thing, other thing"
 ```
 
+### Defining base url
+
+You can define the base url.
+
+```ruby
+page_meta.base "https://example.com/"
+```
+
 ### Defining meta tags
 
 To define other meta tags, you have to use `PageMeta::Base#tag` like the

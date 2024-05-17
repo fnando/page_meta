@@ -11,6 +11,12 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
+## Unreleased
+
+- [Added] `page_meta.base` will now set the base url.
+- [Changed] Some tags will be enforced to show up first. It loosely follows 
+  https://rviscomi.github.io/capo.js/user/rules/.
+
 ## 1.2.0
 
 - [Added] The meta tag's content can also be any object that responds to the

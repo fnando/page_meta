@@ -16,6 +16,8 @@ module PageMeta
   require "page_meta/meta_tag/twitter"
   require "page_meta/link"
   require "page_meta/helpers"
+  require "page_meta/tag"
+  require "page_meta/open_tag"
   require "page_meta/action"
   require "page_meta/naming"
   require "page_meta/translator"

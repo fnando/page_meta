@@ -14,7 +14,11 @@ module PageMeta
     end
 
     def singular_scope
-      @singular_scope ||= scope == :keywords ? "keywords" : scope.to_s.singularize
+      @singular_scope ||= if scope == :keywords
+                            "keywords"
+                          else
+                            scope.to_s.singularize
+                          end
     end
 
     def to_s

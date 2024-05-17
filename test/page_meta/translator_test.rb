@@ -60,7 +60,9 @@ class TranslatorTest < Minitest::Test
   end
 
   test "returns html translation" do
-    translations "page_meta.descriptions.site.home_html" => "<strong>DESCRIPTION</strong>"
+    translations(
+      "page_meta.descriptions.site.home_html" => "<strong>DESCRIPTION</strong>"
+    )
 
     controller = build_controller("SiteController", "home")
     naming = PageMeta::Naming.new(controller)

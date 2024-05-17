@@ -11,9 +11,6 @@ AllCops:
     - bin/**/*
     - gemfiles/vendor/**/*
 
-Layout/LineLength:
-  Enabled: false
-
 Metrics:
   Enabled: false
 
@@ -21,4 +18,7 @@ Minitest/MultipleAssertions:
   Enabled: false
 
 Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: false

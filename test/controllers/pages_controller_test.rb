@@ -18,7 +18,9 @@ class PagesControllerTest < ActionController::TestCase
     test "#{action} - render viewport tag" do
       get action
 
-      assert_select "meta[name=viewport][content='width=device-width,initial-scale=1']"
+      assert_select(
+        "meta[name=viewport][content='width=device-width,initial-scale=1']"
+      )
     end
 
     test "#{action} - render language tag" do
@@ -87,8 +89,10 @@ class PagesControllerTest < ActionController::TestCase
       assert_select "meta[property='og:title'][content='TITLE']"
       assert_select "meta[property='og:type'][content=article]"
       assert_select "meta[property='og:article:author'][content='John Doe']"
-      assert_select "meta[property='og:article:section'][content='Getting Started']"
       assert_select "meta[property='og:url'][content='URL']"
+      assert_select(
+        "meta[property='og:article:section'][content='Getting Started']"
+      )
     end
 
     test "#{action} - render twitter" do
@@ -126,7 +130,16 @@ class PagesControllerTest < ActionController::TestCase
   test "render multiple tags with same rel" do
     get :show
 
-    assert_select "link[rel='apple-touch-icon'][sizes='512x512'][href='/launcher-512.png']"
-    assert_select "link[rel='apple-touch-icon'][sizes='1024x1024'][href='/launcher-1024.png']"
+    assert_select(
+      "link[rel='apple-touch-icon'][sizes='512x512'][href='/launcher-512.png']"
+    )
+    assert_select(
+      "link[rel='apple-touch-icon'][sizes='1024x1024']" \
+      "[href='/launcher-1024.png']"
+    )
+  end
+
+  test "sets optimized order" do
+    get :show
   end
 end

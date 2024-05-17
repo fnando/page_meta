@@ -6,10 +6,28 @@ module PageMeta
       language
       charset
       title
+      viewport
       keywords
       description
-      viewport
     ].freeze
+
+    DEFAULT_ORDER = 99
+
+    META_TAG_ORDER = {
+      pragma: -1,
+      cache_control: -1,
+      expires: -1,
+      refresh: -1,
+      dns_prefetch_control: 4
+    }.freeze
+
+    LINK_ORDER = {
+      preconnect: 6,
+      preload: 7,
+      modulepreload: 8,
+      prefetch: 9,
+      dns_prefetch: 10
+    }.freeze
 
     attr_reader :controller, :store
 
@@ -21,86 +39,119 @@ module PageMeta
       @store = {}
     end
 
-    def meta_tags
-      @meta_tags ||= {}
+    def items
+      @items ||= []
     end
 
-    def links
-      @links ||= []
+    # Add a new `<base>` tag.
+    def base(href)
+      items << {
+        type: :tag,
+        name: :base,
+        value: {href:},
+        order: 2,
+        open: true
+      }
     end
 
-    def tag(name, value)
-      meta_tags[name] = value
+    # Add a new meta tag.
+    def tag(name, value = nil, order: nil, **kwargs)
+      order = order || META_TAG_ORDER[name] || DEFAULT_ORDER
+      items << {type: :meta, name:, value: value || kwargs, order:}
     end
 
-    def link(rel, options)
-      links << {rel:, options:}
+    # Add a new link tag.
+    def link(rel, order: nil, **options)
+      order = order || LINK_ORDER[rel] || DEFAULT_ORDER
+      items << {type: :link, rel:, options:, order:}
     end
 
+    # Add new html tag, like `<base>` or `<title>`.
+    def html(name, value, open: false, order: DEFAULT_ORDER)
+      items << {type: :tag, name:, order:, open:, value:}
+    end
+
+    # The title translation.
     def title
       @title ||= Translator.new(:titles, naming, store)
     end
 
+    # The description translation.
     def description(html: false)
-      @description[html] ||= Translator.new(:descriptions, naming, store.merge(html:))
+      @description[html] ||= Translator.new(
+        :descriptions,
+        naming,
+        store.merge(html:)
+      )
     end
 
+    # The keywords translation.
     def keywords
       @keywords ||= Translator.new(:keywords, naming, store)
     end
 
     def render
-      compute_default_meta_tags
-      render_meta_tags + render_links
+      compute_default_items
+
+      items
+        .sort_by { _1[:order] }
+        .map { send(:"build_#{_1[:type]}", _1).render }
+        .join
+        .html_safe
     end
     alias to_s render
 
-    def naming
+    private def build_tag(item)
+      klass = item[:open] ? OpenTag : Tag
+
+      klass.build(item[:name], item[:value])
+    end
+
+    private def build_meta(item)
+      MetaTag.build(item[:name], item[:value])
+    end
+
+    private def build_link(item)
+      Link.build(item[:rel], item[:options])
+    end
+
+    private def naming
       @naming ||= Naming.new(controller)
     end
 
-    def render_meta_tags
-      meta_tags
-        .map {|name, value| MetaTag.build(name, value).render }
-        .join
-        .html_safe
-    end
-
-    def render_links
-      links
-        .map {|info| Link.build(info[:rel], info[:options]).render }
-        .join
-        .html_safe
-    end
-
-    def compute_default_meta_tags
+    private def compute_default_items
       DEFAULT_META_TAGS.each do |method_name|
-        public_send(:"compute_default_#{method_name}")
+        send(:"compute_default_#{method_name}")
       end
     end
 
-    def compute_default_language
+    private def compute_default_language
       tag(:language, I18n.locale)
     end
 
-    def compute_default_title
-      tag(:title, title) unless title.to_s.blank?
+    private def compute_default_title
+      return if title.to_s.blank?
+
+      html(:title, title.to_s, order: 3)
+      tag(:title, title)
     end
 
-    def compute_default_charset
-      tag(:charset, Rails.configuration.encoding)
+    private def compute_default_charset
+      tag(:charset, Rails.configuration.encoding, order: 0)
     end
 
-    def compute_default_keywords
+    private def compute_default_keywords
       tag(:keywords, keywords.to_s) unless keywords.to_s.blank?
     end
 
-    def compute_default_description
+    private def compute_default_description
       tag(:description, description.to_s) unless description.to_s.blank?
     end
 
-    def compute_default_viewport
-      tag(:viewport, "width=device-width,initial-scale=1") unless meta_tags[:viewport]
+    private def compute_default_viewport
+      return if items.any? { _1[:name] == :viewport && _1[:type] == :tag }
+
+      tag(:viewport, "width=device-width,initial-scale=1", order: 1)
     end
   end
 end
