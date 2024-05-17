@@ -11,7 +11,7 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
-## Unreleased
+## 1.3.0
 
 - [Added] `page_meta.base` will now set the base url.
 - [Changed] Some tags will be enforced to show up first. It loosely follows 
