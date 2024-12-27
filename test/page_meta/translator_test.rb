@@ -98,4 +98,17 @@ class TranslatorTest < Minitest::Test
     assert_equal "TITLE • SITE", title_translator.to_s
     assert_equal "TITLE", title_translator.simple
   end
+
+  test "with base placeholders" do
+    translations "page_meta.titles.things.show" => "TITLE",
+                 "page_meta.titles.base" => "%{value} • %{site_name}"
+
+    controller = build_controller("ThingsController", "show")
+    naming = PageMeta::Naming.new(controller)
+    options = {site_name: "SOME SITE"}
+    translator = PageMeta::Translator.new(:titles, naming, options)
+
+    assert_equal "TITLE • SOME SITE", translator.to_s
+    assert_equal "TITLE", translator.simple
+  end
 end

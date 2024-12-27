@@ -24,9 +24,12 @@ module PageMeta
     def to_s
       return "" if simple.blank?
 
+      value = simple
+
       [
-        t("page_meta.#{scope}.base", value: simple, default: ""),
-        t("page_meta.#{singular_scope}_base", value: simple, default: simple)
+        t("page_meta.#{scope}.base", value:, **override_options),
+        t("page_meta.#{singular_scope}_base", value:, **override_options,
+                                              default: value)
       ].reject(&:blank?).first || ""
     end
 
@@ -37,9 +40,11 @@ module PageMeta
       ]
     end
 
-    def simple
-      override_options = options.merge(default: "")
+    def override_options
+      options.merge(default: "")
+    end
 
+    def simple
       translation = ""
 
       translation_scope.each do |scope|
