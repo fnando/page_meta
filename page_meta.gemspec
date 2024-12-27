@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = PageMeta::VERSION
   spec.authors       = ["Nando Vieira"]
   spec.email         = ["me@fnando.com"]
-  spec.required_ruby_version = Gem::Requirement.new(">= 3.1.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 3.2.0")
   spec.metadata = {
     "rubygems_mfa_required" => "true"
   }
@@ -29,7 +29,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "minitest-utils"
-  spec.add_development_dependency "pry-meta"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "rubocop-fnando"
