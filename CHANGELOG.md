@@ -13,6 +13,11 @@ Prefix your message with one of the following:
 
 ## Unreleased
 
+- [Added] Support for custom base scope targeting controller or controller +
+  action.
+
+## 2.0.0
+
 - [Added] Add support for placeholders in base title.
 - [Changed] Set minimum ruby version to 3.2.
 - [Added] Add method to delete items by their name.

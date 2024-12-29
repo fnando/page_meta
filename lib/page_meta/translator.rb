@@ -27,7 +27,25 @@ module PageMeta
       value = simple
 
       [
+        # Set base scope for controller
+        t(
+          "page_meta.#{naming.controller}.#{singular_scope}_base",
+          value:,
+          **override_options
+        ),
+
+        # Set base scope for action
+        t(
+          "page_meta.#{naming.controller}.#{naming.action}." \
+          "#{singular_scope}_base",
+          value:,
+          **override_options
+        ),
+
+        # Set old style base scope
         t("page_meta.#{scope}.base", value:, **override_options),
+
+        # Set base scope
         t("page_meta.#{singular_scope}_base", value:, **override_options,
                                               default: value)
       ].reject(&:blank?).first || ""
