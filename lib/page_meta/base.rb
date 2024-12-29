@@ -78,13 +78,13 @@ module PageMeta
 
     # The title translation.
     def title
-      @title ||= Translator.new(:titles, naming, store)
+      @title ||= Translator.new(:title, naming, store)
     end
 
     # The description translation.
     def description(html: false)
       @description[html] ||= Translator.new(
-        :descriptions,
+        :description,
         naming,
         store.merge(html:)
       )

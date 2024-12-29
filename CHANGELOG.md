@@ -13,6 +13,7 @@ Prefix your message with one of the following:
 
 ## Unreleased
 
+- [Removed] Support for old format.
 - [Added] Support for custom base scope targeting controller or controller +
   action.
 

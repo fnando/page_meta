@@ -13,14 +13,6 @@ module PageMeta
       @options = options
     end
 
-    def singular_scope
-      @singular_scope ||= if scope == :keywords
-                            "keywords"
-                          else
-                            scope.to_s.singularize
-                          end
-    end
-
     def to_s
       return "" if simple.blank?
 
@@ -29,33 +21,26 @@ module PageMeta
       [
         # Set base scope for controller
         t(
-          "page_meta.#{naming.controller}.#{singular_scope}_base",
+          "page_meta.#{naming.controller}.#{scope}_base",
           value:,
           **override_options
         ),
 
         # Set base scope for action
         t(
-          "page_meta.#{naming.controller}.#{naming.action}." \
-          "#{singular_scope}_base",
+          "page_meta.#{naming.controller}.#{naming.action}.#{scope}_base",
           value:,
           **override_options
         ),
 
-        # Set old style base scope
-        t("page_meta.#{scope}.base", value:, **override_options),
-
         # Set base scope
-        t("page_meta.#{singular_scope}_base", value:, **override_options,
-                                              default: value)
+        t("page_meta.#{scope}_base", value:, **override_options,
+                                     default: value)
       ].reject(&:blank?).first || ""
     end
 
     def translation_scope
-      [
-        "page_meta.#{scope}.#{naming.controller}.#{naming.action}",
-        "page_meta.#{naming.controller}.#{naming.action}.#{singular_scope}"
-      ]
+      ["page_meta.#{naming.controller}.#{naming.action}.#{scope}"]
     end
 
     def override_options
