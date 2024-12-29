@@ -11,10 +11,16 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
+## Unreleased
+
+- [Added] Add support for placeholders in base title.
+- [Changed] Set minimum ruby version to 3.2.
+- [Added] Add method to delete items by their name.
+
 ## 1.3.0
 
 - [Added] `page_meta.base` will now set the base url.
-- [Changed] Some tags will be enforced to show up first. It loosely follows 
+- [Changed] Some tags will be enforced to show up first. It loosely follows
   https://rviscomi.github.io/capo.js/user/rules/.
 
 ## 1.2.0

@@ -231,6 +231,15 @@ would do.
 [Please read Rails docs](http://guides.rubyonrails.org/i18n.html#using-safe-html-translations)
 for more info.
 
+### Removing meta tags
+
+You can use `PageMeta::Base#delete` to remove meta tags. All matching tags will
+be removed.
+
+```ruby
+page_meta.delete(:description)
+```
+
 ## Maintainer
 
 - [Nando Vieira](https://github.com/fnando)

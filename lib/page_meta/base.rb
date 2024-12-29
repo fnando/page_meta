@@ -54,6 +54,11 @@ module PageMeta
       }
     end
 
+    # Delete all matching meta tags by name.
+    def delete(name)
+      items.delete_if { _1[:name] == name }
+    end
+
     # Add a new meta tag.
     def tag(name, value = nil, order: nil, **kwargs)
       order = order || META_TAG_ORDER[name] || DEFAULT_ORDER
@@ -130,6 +135,7 @@ module PageMeta
     end
 
     private def compute_default_title
+      return if has?(:title)
       return if title.to_s.blank?
 
       html(:title, title.to_s, order: 3)
@@ -137,21 +143,31 @@ module PageMeta
     end
 
     private def compute_default_charset
+      return if has?(:charset)
+
       tag(:charset, Rails.configuration.encoding, order: 0)
     end
 
     private def compute_default_keywords
+      return if has?(:keywords)
+
       tag(:keywords, keywords.to_s) unless keywords.to_s.blank?
     end
 
     private def compute_default_description
+      return if has?(:description)
+
       tag(:description, description.to_s) unless description.to_s.blank?
     end
 
     private def compute_default_viewport
-      return if items.any? { _1[:name] == :viewport && _1[:type] == :tag }
+      return if has?(:viewport)
 
       tag(:viewport, "width=device-width,initial-scale=1", order: 1)
+    end
+
+    private def has?(name)
+      items.any? { _1[:name] == name }
     end
   end
 end

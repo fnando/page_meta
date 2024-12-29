@@ -3,6 +3,25 @@
 require "test_helper"
 
 class BaseTest < Minitest::Test
+  test "deletes item by name" do
+    I18n.load_path += Dir["./test/support/config/locales/*.yml"]
+    I18n.eager_load!
+
+    controller = PagesController.new
+    controller.action_name = "show"
+    page_meta = PageMeta::Base.new(controller)
+
+    page_meta.base "http://example.com/"
+    page_meta.tag :author, "John Doe"
+
+    assert_equal 2, page_meta.items.size
+
+    page_meta.delete :base
+    page_meta.delete :author
+
+    assert_equal 0, page_meta.items.size
+  end
+
   test "renders most important tags first" do
     I18n.load_path += Dir["./test/support/config/locales/*.yml"]
     I18n.eager_load!
