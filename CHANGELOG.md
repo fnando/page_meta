@@ -11,7 +11,7 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
-## Unreleased
+## 2.0.1
 
 - [Removed] Support for old format.
 - [Added] Support for custom base scope targeting controller or controller +
